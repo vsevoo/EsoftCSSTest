@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Визуализация дома</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #b3e0ff;
+    }
+
+    .house {
+        position: relative;
+        width: 200px;
+        height: 150px;
+        background-color: #ffffff;
+        border: 2px solid #000000;
+    }
+
+    .roof {
+        width: 0;
+        height: 0;
+        border-left: 100px solid transparent;
+        border-right: 100px solid transparent;
+        border-bottom: 60px solid #ffcc00;
+        position: absolute;
+        top: -60px;
+        left: 0;
+    }
+
+    .window {
+        width: 50px;
+        height: 50px;
+        background-color: #a3c2c2;
+        border-radius: 50%;
+        position: absolute;
+        top: 0px; 
+        left: 75px;
+    }
+
+    .chimney {
+        width: 20px;
+        height: 70px;
+        background-color: #888888;
+        position: absolute;
+        top: -80px;
+        left: 90px;
+    }
+
+    /* Optional */
+    .door {
+        width: 40px;
+        height: 100px;
+        background-color: #7c5240;
+        position: absolute;
+        bottom: 0;
+        left: 80px;
+    }
+</style>
+</head>
+<body>
+
+<div class="house">
+    <div class="roof"></div>
+    <div class="window"></div>
+    <div class="chimney"></div>
+    <!-- Optional -->
+    <div class="door"></div>
+</div>
+
+</body>
+</html>
