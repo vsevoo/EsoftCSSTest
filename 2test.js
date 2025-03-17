@@ -13,10 +13,26 @@ function deepCopy(obj, clonedObjects = new WeakMap()) {
     } else if (typeof obj === 'object' && obj !== null) {
         clone = Array.isArray(obj) ? [] : Object.create(Object.getPrototypeOf(obj));
         clonedObjects.set(obj, clone);
+
+        // Copy enumerable properties
         for (let key in obj) {
             if (Object.prototype.hasOwnProperty.call(obj, key)) {
                 clone[key] = deepCopy(obj[key], clonedObjects);
             }
+        }
+
+        // Copy non-enumerable properties
+        const allPropertyNames = Object.getOwnPropertyNames(obj);
+        for (let key of allPropertyNames) {
+            if (!Object.prototype.hasOwnProperty.call(obj, key)) {
+                clone[key] = deepCopy(obj[key], clonedObjects);
+            }
+        }
+
+        // Copy symbol properties
+        const symbolProperties = Object.getOwnPropertySymbols(obj);
+        for (let symbol of symbolProperties) {
+            clone[symbol] = deepCopy(obj[symbol], clonedObjects);
         }
     } else {
         return obj;
@@ -30,7 +46,9 @@ const obj1 = {
     b: {
         c: 2,
         d: [3, 4]
-    }
+    },
+    [Symbol('sym')]: 'symbol value',
+    func: function() { return 'function value'; }
 };
 
 const obj2 = deepCopy(obj1);
